@@ -7,22 +7,22 @@ constexpr auto sizearr = 1024;
 
 _STD_USE_
 
-// Структура функции SetWindowsPos с официального сайта Microsoft
+// РЎС‚СЂСѓРєС‚СѓСЂР° С„СѓРЅРєС†РёРё SetWindowsPos СЃ РѕС„РёС†РёР°Р»СЊРЅРѕРіРѕ СЃР°Р№С‚Р° Microsoft
 /*
 BOOL SetWindowPos(
 
-HWND hWnd,            // дескриптор окна
-HWND hWndInsertAfter, // дескриптор порядка размещения
-int x,                // позиция по горизонтали
-int y,                // позиция по вертикали
-int cx,               // ширина
-int cy,               // высота
-UINT uFlags           // флажки позиционирования окна
+HWND hWnd,            // РґРµСЃРєСЂРёРїС‚РѕСЂ РѕРєРЅР°
+HWND hWndInsertAfter, // РґРµСЃРєСЂРёРїС‚РѕСЂ РїРѕСЂСЏРґРєР° СЂР°Р·РјРµС‰РµРЅРёСЏ
+int x,                // РїРѕР·РёС†РёСЏ РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё
+int y,                // РїРѕР·РёС†РёСЏ РїРѕ РІРµСЂС‚РёРєР°Р»Рё
+int cx,               // С€РёСЂРёРЅР°
+int cy,               // РІС‹СЃРѕС‚Р°
+UINT uFlags           // С„Р»Р°Р¶РєРё РїРѕР·РёС†РёРѕРЅРёСЂРѕРІР°РЅРёСЏ РѕРєРЅР°
 
 );
 */
 
-// конфигурация для проекта
+// РєРѕРЅС„РёРіСѓСЂР°С†РёСЏ РґР»СЏ РїСЂРѕРµРєС‚Р°
 class config {
 public:
 	void _config(void) {
@@ -38,7 +38,7 @@ private:
 	LPCWSTR title_window = L"Encryption Application";
 }; config sys; // global varriable
 
-// Работа с конфигурацией консоли
+// Р Р°Р±РѕС‚Р° СЃ РєРѕРЅС„РёРіСѓСЂР°С†РёРµР№ РєРѕРЅСЃРѕР»Рё
 void MoveWindow(int posx, int posy)
 {
 	RECT rectClient, rectWindow;
@@ -61,14 +61,14 @@ void MoveCenter()
 		MoveWindow(hWnd, posx, posy, rectClient.right - rectClient.left, rectClient.bottom - rectClient.top, TRUE);
 }
 
-// Функции
+// Р¤СѓРЅРєС†РёРё
 
 class func {
 public:
-	// Стартовая информация в консоли
+	// РЎС‚Р°СЂС‚РѕРІР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ РІ РєРѕРЅСЃРѕР»Рё
 	void information() {
-		string start = "\t\t\tПрограмма шифрования и дешифрования текста\n";
-		string info = "\t\t     Чтобы приостановить работу нажмите F1 и ENTER.\n";
+		string start = "\t\t\tРџСЂРѕРіСЂР°РјРјР° С€РёС„СЂРѕРІР°РЅРёСЏ Рё РґРµС€РёС„СЂРѕРІР°РЅРёСЏ С‚РµРєСЃС‚Р°\n";
+		string info = "\t\t     Р§С‚РѕР±С‹ РїСЂРёРѕСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°Р±РѕС‚Сѓ РЅР°Р¶РјРёС‚Рµ F1 Рё ENTER.\n";
 
 		for (int i = NULL; i < start.size(); i++) {
 			cout << start[i]; 
@@ -81,7 +81,7 @@ public:
 		}
 	}
 	
-	// Шифрование и дешифрование
+	// РЁРёС„СЂРѕРІР°РЅРёРµ Рё РґРµС€РёС„СЂРѕРІР°РЅРёРµ
 	char de_and_encryption() {
 		INT de_encryptionNumber = rand() % 100;
 		//	color	//	
@@ -93,22 +93,22 @@ public:
 			if (GetAsyncKeyState(VK_F1))
 				break;
 			char str[sizearr] = { NULL };
-			cout << "Введите текст: ";
+			cout << "Р’РІРµРґРёС‚Рµ С‚РµРєСЃС‚: ";
 			cin.getline(str, sizearr);
 			for (int i = NULL; str[i]; i++)
 				str[i] += de_encryptionNumber;
-			cout << "Зашифрованный текст: " << str << endl;
+			cout << "Р—Р°С€РёС„СЂРѕРІР°РЅРЅС‹Р№ С‚РµРєСЃС‚: " << str << endl;
 			for (int u = NULL; str[u]; u++)
 				str[u] -= de_encryptionNumber;
-			cout << "Дешифрованный текст: " << str << "\n\n============================\n";
+			cout << "Р”РµС€РёС„СЂРѕРІР°РЅРЅС‹Р№ С‚РµРєСЃС‚: " << str << "\n\n============================\n";
 		}
 		return 0;
 	}
 }; func function;
 
 INT main(INT argc, CHAR *argv[]) {
-	sys._config(); // применяем конфигурацию проекта
-	MoveWindow(450, 300); // x, y - WinAPI, координаты запуска консоли для центрирования на мониторе
+	sys._config(); // РїСЂРёРјРµРЅСЏРµРј РєРѕРЅС„РёРіСѓСЂР°С†РёСЋ РїСЂРѕРµРєС‚Р°
+	MoveWindow(450, 300); // x, y - WinAPI, РєРѕРѕСЂРґРёРЅР°С‚С‹ Р·Р°РїСѓСЃРєР° РєРѕРЅСЃРѕР»Рё РґР»СЏ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёСЏ РЅР° РјРѕРЅРёС‚РѕСЂРµ
 	function.information();
 	function.de_and_encryption();
 	return 0;
